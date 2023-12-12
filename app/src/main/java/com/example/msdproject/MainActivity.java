@@ -6,6 +6,7 @@ import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.room.Room;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -77,20 +78,36 @@ public class MainActivity extends AppCompatActivity {
             button.setText(movie.title);
             button.setOnClickListener(v -> openMovieDetailActivity(movie));
 
+            // Set the button width to match the parent's width
+            ConstraintLayout.LayoutParams params = new ConstraintLayout.LayoutParams(
+                    ConstraintLayout.LayoutParams.MATCH_PARENT,
+                    ConstraintLayout.LayoutParams.WRAP_CONTENT
+            );
+            button.setLayoutParams(params);
+
+            button.setTextColor(Color.WHITE);
+            button.setBackgroundColor(Color.DKGRAY);
+
             constraintLayout.addView(button);
 
             // Clone the current constraints to modify them
             constraintSet.clone(constraintLayout);
 
-            // Connect the top of the button to the bottom of the previous button
-            constraintSet.connect(button.getId(), ConstraintSet.TOP, previousButtonId, previousButtonId == ConstraintSet.PARENT_ID ? ConstraintSet.TOP : ConstraintSet.BOTTOM, 8);
+            // Connect the top of the button to the bottom of the previous button without any margin
+            constraintSet.connect(button.getId(), ConstraintSet.TOP, previousButtonId,
+                    previousButtonId == ConstraintSet.PARENT_ID ? ConstraintSet.TOP : ConstraintSet.BOTTOM);
 
+            // Connect the button's left and right to the parent's left and right
+            constraintSet.connect(button.getId(), ConstraintSet.LEFT, ConstraintSet.PARENT_ID, ConstraintSet.LEFT, 0);
+            constraintSet.connect(button.getId(), ConstraintSet.RIGHT, ConstraintSet.PARENT_ID, ConstraintSet.RIGHT, 0);
 
+            // Apply the constraints
             constraintSet.applyTo(constraintLayout);
 
             previousButtonId = button.getId(); // Update previousButtonId for the next iteration
         }
     }
+
 
     private void openMovieDetailActivity(Movie movie) {
         Intent intent = new Intent(this, MovieDetailActivity.class);
