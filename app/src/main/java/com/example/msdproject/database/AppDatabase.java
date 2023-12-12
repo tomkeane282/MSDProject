@@ -28,13 +28,13 @@ public abstract class AppDatabase extends RoomDatabase {
                 dao.deleteAll();
 
 
-                Movie movie1 = new Movie("Inception","2010", "2h 28m","https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_.jpg","", "");
+                Movie movie1 = new Movie("Inception","2010", "2h 28m","https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_.jpg","a", "a");
                 dao.insertAll(movie1);
-                Movie movie2 = new Movie("The Matrix","1999","2h 16m","https://m.media-amazon.com/images/M/MV5BNzQzOTk3OTAtNDQ0Zi00ZTVkLWI0MTEtMDllZjNkYzNjNTc4L2ltYWdlXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_FMjpg_UX1000_.jpg","","");
+                Movie movie2 = new Movie("The Matrix","1999","2h 16m","https://m.media-amazon.com/images/M/MV5BNzQzOTk3OTAtNDQ0Zi00ZTVkLWI0MTEtMDllZjNkYzNjNTc4L2ltYWdlXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_FMjpg_UX1000_.jpg","a","a");
                 dao.insertAll(movie2);
-                Movie movie3 = new Movie("Toy Story 3","2010","1h 43m","https://m.media-amazon.com/images/M/MV5BMTI3NDUyMzk5MV5BMl5BanBnXkFtZTcwMjMyMjI0Mw@@._V1_.jpg","","");
+                Movie movie3 = new Movie("Toy Story 3","2010","1h 43m","https://m.media-amazon.com/images/M/MV5BMTI3NDUyMzk5MV5BMl5BanBnXkFtZTcwMjMyMjI0Mw@@._V1_.jpg","a","a");
                 dao.insertAll(movie3);
-                Movie movie4 = new Movie("Jaws","1975","2h 4m","https://m.media-amazon.com/images/M/MV5BMmVmODY1MzEtYTMwZC00MzNhLWFkNDMtZjAwM2EwODUxZTA5XkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_.jpg","","");
+                Movie movie4 = new Movie("Jaws","1975","2h 4m","https://m.media-amazon.com/images/M/MV5BMmVmODY1MzEtYTMwZC00MzNhLWFkNDMtZjAwM2EwODUxZTA5XkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_.jpg","a","a");
                 dao.insertAll(movie4);
             });
         }
@@ -46,7 +46,7 @@ public abstract class AppDatabase extends RoomDatabase {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                                     AppDatabase.class, "movie_database")
-                            .fallbackToDestructiveMigration()
+                            //.fallbackToDestructiveMigration()
                             .addCallback(sRoomDatabaseCallback)
                             .build();
                 }
@@ -57,6 +57,3 @@ public abstract class AppDatabase extends RoomDatabase {
 
 
 }
-
-
-
